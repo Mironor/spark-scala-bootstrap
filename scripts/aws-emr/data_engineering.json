@@ -1,0 +1,43 @@
+[
+  {
+    "Args": [
+      "spark-submit",
+
+      "--deploy-mode",
+      "cluster",
+
+      "--files",
+      "s3://stp-code-repository/configs/emr/prod/data_engineering.conf#application.conf",
+
+      "--conf",
+      " spark.executor.extraClassPath=-Dconfig.file=file:application.conf",
+
+      "--class",
+      "io.smarttraffik.Main",
+
+      "--conf",
+      "spark.driver.maxResultSize=16g ",
+
+      "--conf",
+      "spark.sql.shuffle.partitions=10",
+
+      "--conf",
+      "spark.yarn.maxAppAttempts=1",
+
+      "--driver-java-options",
+      "-Ddata_engineering.spark.checkpoint_dir=s3://stp-prod-data/tmp/checkpoint",
+
+
+      "s3://stp-code-repository/release/emr/data-engineering-0.0-RELEASE.jar",
+
+      "--export",
+      "--dates",
+      "2020_10_26,2020_10_27,2020_10_28,2020_10_29,2020_10_30,2020_10_31,2020_11_01,2020_11_02,2020_11_03,2020_11_04,2020_11_05,2020_11_06,2020_11_07,2020_11_08,2020_11_09,2020_11_10,2020_11_11,2020_11_12,2020_11_13,2020_11_14,2020_11_15,2020_11_16,2020_11_17,2020_11_18,2020_11_19,2020_11_20,2020_11_21,2020_11_22,2020_11_23,2020_11_24,2020_11_25,2020_11_26,2020_11_27"
+  ],
+    "Type": "CUSTOM_JAR",
+    "ActionOnFailure": "CONTINUE",
+    "Jar": "command-runner.jar",
+    "Properties": "",
+    "Name": "Data pipeline"
+  }
+]

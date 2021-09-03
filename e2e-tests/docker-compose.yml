@@ -1,0 +1,15 @@
+version: '3'
+services:
+  data-engineering:
+    image: bitnami/spark:3
+    container_name: data-engineering
+    user: 0:0
+    volumes:
+      - ../data-engineering/target/scala-2.12/data-engineering-0.0-RELEASE.jar:/data-engineering.jar
+      - ./data/:/data/
+      - ./config/orange-ga.json:/orange-ga.json
+      - datawarehouse:/datawarehouse/
+      - /tmp:/datawarehouse/tmp/
+    command: bin/spark-submit --class com.dummy.Main --conf spark.sql.shuffle.partitions=1 /data-engineering.jar --e2e-tests"
+volumes:
+  datawarehouse:

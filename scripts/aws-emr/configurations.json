@@ -1,0 +1,15 @@
+[
+  {
+    "Classification": "spark",
+    "Properties": {
+      "maximizeResourceAllocation": "true"
+    },
+    "Configurations": []
+  },
+  {
+    "Classification": "spark-log4j",
+    "Properties": {
+      "log4j.rootCategory": "WARN, console"
+    }
+  }
+]
